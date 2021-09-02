@@ -19,10 +19,19 @@ public class Carro {
     @JoinColumn(name = "marca_id")
     private Marca marca;
 
+    @Column(name = "modelo")
     private String modelo;
+
+    @Column(name = "fabricacao")
     private Integer fabricacao;
+
+    @Column(name = "ano")
     private Integer ano;
+
+    @Column(name = "cor")
     private String cor;
 
-
+    @ManyToOne
+    @JoinColumn(name = "motorista_id")
+    private Motorista motorista;
 }

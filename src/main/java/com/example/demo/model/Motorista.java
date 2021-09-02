@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,12 +17,14 @@ public class Motorista {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "nome")
+    @NotNull
     private String nome;
-    private LocalDate dataDeNasc;
 
-    @OneToMany(mappedBy = "id", targetEntity = Carro.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Column(name = "data_nascimento")
+    private LocalDate dataNascimento;
+
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Carro> carros;
-
-
-
 }
