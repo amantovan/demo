@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MotoristaBusiness {
@@ -22,6 +23,25 @@ public class MotoristaBusiness {
         return _motoristaRepository.findAll();
     }
 
+    public Motorista listarUm(Long id){
+        return _motoristaRepository.getOne(id);
+    }
+
+    public Motorista alterarMotorista(Long id, Motorista motorista){
+        _motoristaRepository.deleteById(id);
+        motorista = _motoristaRepository.save(motorista);
+        return motorista;
+    }
+
+    public void excluirMotorista(Long id){
+        _motoristaRepository.deleteById(id);
+    }
+
+    public Optional<Motorista> buscarMotorista(Long id){
+        Optional<Motorista> motorista;
+        motorista = _motoristaRepository.findById(id);
+        return motorista;
+    }
     /*
     * Será necessário implementar a lógica para alterar, excluir e buscar motorista.
     *

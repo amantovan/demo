@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.business.MotoristaBusiness;
 import com.example.demo.model.Motorista;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,6 +26,23 @@ public class MotoristaController {
     public List<Motorista> buscarTodos() {
         return motoristaBusiness.listarTodos();
     }
+
+    @GetMapping("/{id}")
+    public Motorista buscarMotorista(@PathVariable Long id) {   //testar
+        return this.motoristaBusiness.listarUm(id);
+    }
+
+    @PutMapping("/{id}")
+    public Motorista editar(@RequestBody @Valid @PathVariable Long id, Motorista motorista){
+        return motoristaBusiness.alterarMotorista(id, motorista);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id){
+        this.motoristaBusiness.excluirMotorista(id);
+    }
+
+
 
     /*
     * Será necessário implementar a busca por motorista, edição de motorista e exclusão de motorista.
