@@ -5,14 +5,14 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/demo
     username: postgres
-    password: S@lut3m!!142536
+    password: root
     driverClassName: org.postgresql.Driver
     tomcat:
       max-active: 1000
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:

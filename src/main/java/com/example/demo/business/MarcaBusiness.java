@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MarcaBusiness {
@@ -19,17 +18,19 @@ public class MarcaBusiness {
         return marca;
     }
 
+    public Marca buscarMarca(Long id){
+        Marca marca;
+        marca = _marcaRepository.findById(id).get();
+        return marca;
+    }
+
     public List<Marca> listarTodos() {
         return _marcaRepository.findAll();
     }
 
-    public Marca listarUm(Long id){
-        return _marcaRepository.getOne(id);
-    }
-
 
     public Marca alterarMarca(Long id, Marca marca){
-        _marcaRepository.deleteById(id);
+        marca.setId(id);
         marca = _marcaRepository.save(marca);
         return marca;
     }
@@ -38,15 +39,4 @@ public class MarcaBusiness {
         _marcaRepository.deleteById(id);
     }
 
-    public Optional<Marca> buscarMarca(Long id){
-        Optional<Marca> marca;
-        marca = _marcaRepository.findById(id);
-        return marca;
-    }
-    /*
-    * Será necessário implementar a lógica para alterar, excluir e buscar motorista.
-    *
-    * Ao final, implemente também o mesmo para Marca e Carro
-    *
-    * */
 }

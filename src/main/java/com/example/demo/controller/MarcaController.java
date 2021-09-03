@@ -27,12 +27,12 @@ public class MarcaController {
     }
 
     @GetMapping("/{id}")
-    public Marca buscarMarca(@PathVariable Long id) {   //testar
-        return this.marcaBusiness.listarUm(id);
+    public Marca buscarMarca(@PathVariable Long id) {
+        return this.marcaBusiness.buscarMarca(id);
     }
 
     @PutMapping("/{id}")
-    public Marca editar(@RequestBody @Valid @PathVariable Long id, Marca marca){
+    public Marca editar(@PathVariable Long id, @RequestBody @Valid Marca marca){
         return marcaBusiness.alterarMarca(id, marca);
     }
 
@@ -42,27 +42,5 @@ public class MarcaController {
     }
 
 
-
-    /*
-     * Será necessário implementar a busca por motorista, edição de motorista e exclusão de motorista.
-     * Lembrando que:
-     *
-     * No padrão REST, as requisições são do seguinte padrão:
-     *
-     * POST      /motorista => Cria um Motorista
-     * PUT       /motorista/1 => Altera o Motorista de ID 1
-     * GET       /motorista => Retorna todos os Motoristas
-     * GET       /motorista/1 => Retorna o Motorista de ID 1
-     * DELETE    /motorista/1 => Delete o Motorista de ID 1
-     *
-     * Coisas que vão te ajudar:
-     *   Anotação @PathVariable
-     *
-     *
-     *
-     *
-     * Ao final, fazer os mesmos controllers para Marca e Carro
-     *
-     * */
 
 }

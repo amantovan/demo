@@ -27,12 +27,12 @@ public class CarroController {
     }
 
     @GetMapping("/{id}")
-    public Carro buscarCarro(@PathVariable Long id) {   //testar
-        return this.carroBusiness.listarUm(id);
+    public Carro buscarCarro(@PathVariable Long id) {
+        return this.carroBusiness.buscarCarro(id);
     }
 
     @PutMapping("/{id}")
-    public Carro editar(@RequestBody @Valid @PathVariable Long id, Carro carro){
+    public Carro editar( @PathVariable Long id, @RequestBody @Valid Carro carro){
         return carroBusiness.alterarCarro(id, carro);
     }
 
