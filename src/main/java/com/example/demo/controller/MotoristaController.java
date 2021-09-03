@@ -28,7 +28,7 @@ public class MotoristaController {
     }
 
     @GetMapping("/{id}")
-    public Motorista buscarMotorista(@PathVariable Long id) {   //testar
+    public Motorista buscarMotorista(@PathVariable Long id) {
         return this.motoristaBusiness.buscarMotorista(id);
     }
 
