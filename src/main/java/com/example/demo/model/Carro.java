@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,5 +36,6 @@ public class Carro {
 
     @ManyToOne
     @JoinColumn(name = "motorista_id")
+    @JsonIgnore
     private Motorista motorista;
 }
