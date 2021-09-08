@@ -5,9 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Embeddable
 @Getter
@@ -15,14 +14,12 @@ import javax.validation.constraints.NotBlank;
 public class PosicaoGeografica {
 
     @NotBlank
-    @Min(-90)
-    @Max(90)
+    @Pattern(regexp = "^(\\+|-)?(?:90(?:(?:\\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\\.[0-9]{1,6})?))$")
     @Column(name = "latitude")
     private String latitude;
 
     @NotBlank
-    @Min(-180)
-    @Max(180)
+    @Pattern(regexp = "^(\\+|-)?(?:180(?:(?:\\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\\.[0-9]{1,6})?))$")
     @Column(name = "longitude")
     private String longitude;
 

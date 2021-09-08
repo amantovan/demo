@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/cliente")
+@RequestMapping(value = "/clientes")
 public class ClienteController extends BaseController<Cliente>{
 
     public ClienteController(@Qualifier("clienteBusiness") BaseBusiness<Cliente> business) {
         super(business);
     }
+
 }

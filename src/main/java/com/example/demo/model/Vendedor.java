@@ -4,13 +4,9 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "vendedor")
@@ -20,6 +16,9 @@ public class Vendedor extends EntidadeBase{
 
     @NotBlank
     private String cpf;
+
+    @NotBlank
+    private String nome;
 
     @Embedded
     @JsonUnwrapped

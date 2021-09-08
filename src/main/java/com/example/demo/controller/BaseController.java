@@ -2,25 +2,25 @@ package com.example.demo.controller;
 
 import com.example.demo.business.BaseBusiness;
 import com.example.demo.model.EntidadeBase;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+
 @RestController
 public abstract class BaseController<E extends EntidadeBase> {
 
-    private final BaseBusiness<E> _business;
+    protected final BaseBusiness<E> _business;
 
     public BaseController(BaseBusiness<E> business) {
         _business = business;
     }
 
     @PostMapping
-    public E criar(@RequestBody @Valid E e) {
-        e = _business.criar(e);
-        return e;
+    public ResponseEntity criar(@RequestBody E e) {
+        return _business.criar(e);
     }
 
     @GetMapping
@@ -34,7 +34,7 @@ public abstract class BaseController<E extends EntidadeBase> {
     }
 
     @PutMapping("/{id}")
-    public E editar( @PathVariable Long id, @RequestBody @Valid E e){
+    public ResponseEntity editar(@PathVariable Long id, @RequestBody @Valid E e){
         return _business.alterar(id, e);
     }
 

@@ -1,15 +1,11 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -20,8 +16,6 @@ public class Cliente extends EntidadeBase{
 
     @NotBlank
     @Column(name = "cnpj")
-    @Min(14)
-    @Max(14)
     private String cnpj;
 
     @NotBlank
@@ -31,5 +25,11 @@ public class Cliente extends EntidadeBase{
     @Embedded
     @JsonUnwrapped
     private PosicaoGeografica posicaoGeografica;
+
+    @ManyToOne
+    @JoinColumn(name = "vendedor_id")
+    @JsonIgnore
+    private Vendedor vendedor;
+
 
 }

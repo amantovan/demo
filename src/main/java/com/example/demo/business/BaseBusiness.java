@@ -3,6 +3,7 @@ package com.example.demo.business;
 
 import com.example.demo.model.EntidadeBase;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,25 +11,25 @@ import java.util.List;
 @Repository
 public abstract class BaseBusiness<E extends EntidadeBase> {
 
-    private final JpaRepository<E, Long> repository;
+    protected final JpaRepository<E, Long> repository;
 
     BaseBusiness(JpaRepository<E, Long> repository) {
         this.repository = repository;
     }
 
-    public E criar(E e) {
+    public ResponseEntity criar(E e) {
         e = repository.save(e);
-        return e;
+        return ResponseEntity.ok(e);
     }
 
     public List<E> listarTodos() {
         return repository.findAll();
     }
 
-    public E alterar(Long id, E e){
+    public ResponseEntity alterar(Long id, E e){
         e.setId(id);
         e = repository.save(e);
-        return e;
+        return ResponseEntity.ok(e);
     }
 
     public void excluir(Long id){
@@ -40,4 +41,5 @@ public abstract class BaseBusiness<E extends EntidadeBase> {
         e = repository.findById(id).get();
         return e;
     }
+
 }
