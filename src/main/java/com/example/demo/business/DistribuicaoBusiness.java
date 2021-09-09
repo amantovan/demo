@@ -1,10 +1,10 @@
 package com.example.demo.business;
 
+import com.example.demo.filters.DistribuicaoFilter;
 import com.example.demo.model.Cliente;
-import com.example.demo.model.ClienteVendedor;
+import com.example.demo.dto.ClienteVendedor;
 import com.example.demo.model.Vendedor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,10 +19,10 @@ public class DistribuicaoBusiness {
     @Autowired
     ClienteBusiness clienteBusiness;
 
-    public List<ClienteVendedor> distribuir(){
+    public List<ClienteVendedor> distribuir(DistribuicaoFilter filter){
         List<ClienteVendedor> distribuicoes= new ArrayList<>();
 
-        for (Cliente cliente: clienteBusiness.listarTodos()) {
+        for (Cliente cliente: clienteBusiness.listarTodos(filter)) {
 
             ClienteVendedor clienteVendedor = new ClienteVendedor();
             clienteVendedor.setCodCliente(cliente.getId());
@@ -34,7 +34,7 @@ public class DistribuicaoBusiness {
             double distMenor = 99999999;
 
             Vendedor vendedorMaisProximo = null;
-            for (Vendedor vendedor: vendedorBusiness.listarTodos()) {
+            for (Vendedor vendedor: vendedorBusiness.listarTodos(filter)) {
                 double latV = Double.parseDouble(vendedor.getPosicaoGeografica().getLatitude());
                 double lonV = Double.parseDouble(vendedor.getPosicaoGeografica().getLongitude());
                 distNova = distance(latC, latV, lonC, lonV);

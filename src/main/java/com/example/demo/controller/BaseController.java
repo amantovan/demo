@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.business.BaseBusiness;
+import com.example.demo.filters.BaseFilter;
 import com.example.demo.model.EntidadeBase;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ public abstract class BaseController<E extends EntidadeBase> {
 
     protected final BaseBusiness<E> _business;
 
+    BaseFilter baseFilter;
+
     public BaseController(BaseBusiness<E> business) {
         _business = business;
     }
@@ -25,7 +28,7 @@ public abstract class BaseController<E extends EntidadeBase> {
 
     @GetMapping
     public List<E> buscarTodos() {
-        return _business.listarTodos();
+        return _business.listarTodos(baseFilter);
     }
 
     @GetMapping("/{id}")

@@ -28,7 +28,6 @@ public class Cliente extends EntidadeBase{
 
     @ManyToOne
     @JoinColumn(name = "vendedor_id")
-    @JsonIgnore
     private Vendedor vendedor;
 
 

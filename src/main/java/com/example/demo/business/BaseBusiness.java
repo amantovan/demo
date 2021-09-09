@@ -1,6 +1,7 @@
 package com.example.demo.business;
 
 
+import com.example.demo.filters.BaseFilter;
 import com.example.demo.model.EntidadeBase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public abstract class BaseBusiness<E extends EntidadeBase> {
         return ResponseEntity.ok(e);
     }
 
-    public List<E> listarTodos() {
+    public List<E> listarTodos(BaseFilter baseFilter) {
         return repository.findAll();
     }
 

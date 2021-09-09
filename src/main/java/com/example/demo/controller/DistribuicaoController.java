@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.business.DistribuicaoBusiness;
-import com.example.demo.model.ClienteVendedor;
+import com.example.demo.filters.DistribuicaoFilter;
+import com.example.demo.dto.ClienteVendedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,8 @@ public class DistribuicaoController {
     DistribuicaoBusiness distribuicaoBusiness;
 
     @GetMapping
-    public List<ClienteVendedor> distribuir() {
-        return this.distribuicaoBusiness.distribuir();
+    public List<ClienteVendedor> distribuir(DistribuicaoFilter filter) {
+        System.out.println(filter.toString());
+        return this.distribuicaoBusiness.distribuir(filter);
     }
 }
